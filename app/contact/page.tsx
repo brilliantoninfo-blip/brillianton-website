@@ -39,9 +39,7 @@ export default function ContactPage() {
   };
 
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Instagram, href: "https://www.instagram.com/brilliantonglobal?igsh=OWZ1ZzM5NmNqZ2h3", label: "Instagram" },
   ];
 
   return (
@@ -59,7 +57,7 @@ export default function ContactPage() {
               Contact Us
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Get in touch with our team. We're here to help you on your educational journey.
+              Get in touch with our team. We&apos;re here to help you on your educational journey.
             </p>
           </motion.div>
         </div>
@@ -122,7 +120,7 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                      placeholder="+1 (234) 567-890"
+                      placeholder="+91 98765 43210"
                     />
                   </div>
 
@@ -169,7 +167,7 @@ export default function ContactPage() {
                       animate={{ opacity: 1, y: 0 }}
                       className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800"
                     >
-                      Thank you! Your message has been sent. We'll get back to you soon.
+                      Thank you! Your message has been sent. We&apos;ll get back to you soon.
                     </motion.div>
                   )}
 
@@ -214,7 +212,7 @@ export default function ContactPage() {
                 <div>
                   <h2 className="text-3xl font-bold text-text mb-6">Get in Touch</h2>
                   <p className="text-gray-600 mb-8">
-                    We're here to answer your questions and help you explore opportunities. Reach out through any of these channels.
+                    We&apos;re here to answer your questions and help you explore opportunities. Reach out through any of these channels.
                   </p>
                 </div>
 
@@ -228,8 +226,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-text mb-1">Email</h3>
-                      <a href="mailto:info@brillianton.com" className="text-gray-600 hover:text-primary transition-colors">
-                        info@brillianton.com
+                      <a href="mailto:brilliantoninfo@gmail.com" className="text-gray-600 hover:text-primary transition-colors">
+                        brilliantoninfo@gmail.com
                       </a>
                     </div>
                   </motion.div>
@@ -243,8 +241,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-text mb-1">Phone</h3>
-                      <a href="tel:+1234567890" className="text-gray-600 hover:text-primary transition-colors">
-                        +1 (234) 567-890
+                      <a href="tel:+919778117553" className="text-gray-600 hover:text-primary transition-colors">
+                        +91 97781 17553
                       </a>
                     </div>
                   </motion.div>
@@ -259,9 +257,8 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-text mb-1">Address</h3>
                       <p className="text-gray-600">
-                        123 Education Street<br />
-                        Global City, GC 12345<br />
-                        International
+                        Malappuram, Kerala<br />
+                        India
                       </p>
                     </div>
                   </motion.div>
@@ -295,4 +292,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
