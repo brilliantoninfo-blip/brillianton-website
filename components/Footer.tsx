@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, Mail, Phone, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Globe, Mail, Phone, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Footer() {
@@ -22,9 +22,7 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Instagram, href: "https://www.instagram.com/brilliantonglobal?igsh=OWZ1ZzM5NmNqZ2h3", label: "Instagram" },
   ];
 
   return (
@@ -119,14 +117,14 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center space-x-2 text-gray-400 text-sm">
                 <Mail size={16} />
-                <a href="mailto:info@brillianton.com" className="hover:text-accent transition-colors">
-                  info@brillianton.com
+                <a href="mailto:brilliantoninfo@gmail.com" className="hover:text-accent transition-colors">
+                  brilliantoninfo@gmail.com
                 </a>
               </li>
               <li className="flex items-center space-x-2 text-gray-400 text-sm">
                 <Phone size={16} />
-                <a href="tel:+1234567890" className="hover:text-accent transition-colors">
-                  +1 (234) 567-890
+                <a href="tel:+919778117553" className="hover:text-accent transition-colors">
+                  +91 97781 17553
                 </a>
               </li>
             </ul>
@@ -142,4 +140,3 @@ export default function Footer() {
     </footer>
   );
 }
-
