@@ -61,14 +61,6 @@ export default function GlobalMentorship() {
                     type: "spring",
                     stiffness: 200,
                   }}
-                  animate={{
-                    y: [0, -10, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: index * 0.2,
-                  }}
                   className="absolute"
                   style={{
                     left: location.x,
@@ -76,7 +68,18 @@ export default function GlobalMentorship() {
                     transform: "translate(-50%, -50%)",
                   }}
                 >
-                  <div className="relative group cursor-pointer">
+                  <motion.div
+                    animate={{
+                      y: [0, -10, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: index * 0.2,
+                      ease: "easeInOut",
+                    }}
+                    className="relative group cursor-pointer"
+                  >
                     <MapPin className="w-8 h-8 text-primary drop-shadow-lg" />
                     <motion.div
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -88,7 +91,7 @@ export default function GlobalMentorship() {
                         <div className="w-2 h-2 bg-primary rotate-45"></div>
                       </div>
                     </motion.div>
-                  </div>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
@@ -120,4 +123,3 @@ export default function GlobalMentorship() {
     </section>
   );
 }
-
