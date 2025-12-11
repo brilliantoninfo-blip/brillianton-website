@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, Mail, Phone, Instagram } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Footer() {
@@ -36,9 +37,15 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center space-x-2 mb-4">
-              <Globe className="w-6 h-6 text-accent" />
-              <span className="text-xl font-bold">Brillianton</span>
+            {/* Logo with white filter for dark background */}
+            <div className="relative h-12 w-40 mb-4">
+              <Image
+                src="/brillianton-logo.svg"
+                alt="Brillianton Global Education"
+                fill
+                sizes="160px"
+                className="object-contain brightness-0 invert"
+              />
             </div>
             <p className="text-gray-400 text-sm mb-4">
               Global Mentoring for a Global Mindset.

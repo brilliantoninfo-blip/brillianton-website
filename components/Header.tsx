@@ -44,20 +44,18 @@ export default function Header() {
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="relative w-10 h-10 md:w-12 md:h-12">
+          {/* Logo - Your full logo with text */}
+          <Link href="/" className="flex items-center group">
+            <div className="relative h-12 w-40 md:h-14 md:w-48">
               <Image
                 src="/brillianton-logo.svg"
-                alt="Brillianton logo"
+                alt="Brillianton Global Education"
                 fill
-                sizes="48px"
+                sizes="(max-width: 768px) 160px, 192px"
                 className="object-contain transition-transform duration-300 group-hover:scale-105"
                 priority
               />
             </div>
-            <span className="text-xl md:text-2xl font-bold text-primary group-hover:text-secondary transition-colors">
-              Brillianton
-            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -127,4 +125,3 @@ export default function Header() {
     </motion.header>
   );
 }
-
