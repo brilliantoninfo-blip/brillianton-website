@@ -13,31 +13,7 @@ const upcomingWebinars = [
     time: "7:30 PM - 8:30 PM IST",
     speaker: "Maknnoon Wani, Amiya Sur",
     description: "Join us for a free webinar featuring Chevening Scholars from Oxford University and University of Manchester.",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop",
-  },
-  {
-    title: "Pathways to Top Universities",
-    date: "December 15, 2024",
-    time: "6:00 PM IST",
-    speaker: "Dr. Sarah Johnson",
-    description: "Learn about application strategies for Ivy League and top QS universities.",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop",
-  },
-  {
-    title: "International Exchange Programs",
-    date: "December 22, 2024",
-    time: "7:00 PM IST",
-    speaker: "Prof. Michael Chen",
-    description: "Discover opportunities for global student exchange programs.",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop",
-  },
-  {
-    title: "Scholarship Opportunities 2025",
-    date: "January 5, 2025",
-    time: "6:30 PM IST",
-    speaker: "Ms. Emily Rodriguez",
-    description: "Comprehensive guide to scholarships and fellowships worldwide.",
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop",
+    image: "/webinar-posters/session-2-poster.jpg",
   },
 ];
 
@@ -60,7 +36,7 @@ export default function WebinarsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto justify-center">
           {upcomingWebinars.map((webinar, index) => (
             <motion.div
               key={webinar.title}
@@ -71,19 +47,25 @@ export default function WebinarsSection() {
               whileHover={{ y: -8, scale: 1.02 }}
               className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
             >
-              {/* Image */}
+              {/* Poster Image */}
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
                   src={webinar.image}
                   alt={webinar.title}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5 flex items-center space-x-2">
                   <Video className="w-4 h-4 text-primary" />
                   <span className="text-xs font-semibold text-primary">Live Webinar</span>
                 </div>
+                {webinar.subtitle && (
+                  <div className="absolute top-4 right-4 bg-primary/90 backdrop-blur-sm rounded-lg px-3 py-1.5">
+                    <span className="text-xs font-semibold text-white">{webinar.subtitle}</span>
+                  </div>
+                )}
               </div>
               
               {/* Content */}

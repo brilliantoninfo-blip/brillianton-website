@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Clock, User, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Video } from "lucide-react";
 
 const upcomingWebinars = [
@@ -14,6 +15,7 @@ const upcomingWebinars = [
     time: "7:30 PM - 8:30 PM IST",
     speaker: "Maknnoon Wani, Amiya Sur",
     description: "Join us for a free webinar featuring Chevening Scholars from Oxford University and University of Manchester. Learn about their journey and get insights on securing prestigious scholarships and admissions to top UK universities.",
+    poster: "/webinar-posters/session-2-poster.jpg",
     achievers: [
       {
         name: "Maknnoon Wani",
@@ -29,51 +31,17 @@ const upcomingWebinars = [
     contactEmail: "brilliantoninfo@gmail.com",
     registrationLink: "https://forms.gle/GPQKB8oF7PBe3AYW6",
   },
-  {
-    id: 2,
-    title: "Pathways to Top Universities",
-    date: "December 15, 2024",
-    time: "6:00 PM IST",
-    speaker: "Dr. Sarah Johnson",
-    description: "Learn about application strategies for Ivy League and top QS universities. Get insights on what admissions committees look for.",
-    registrationLink: "https://forms.google.com/placeholder",
-  },
-  {
-    id: 3,
-    title: "International Exchange Programs",
-    date: "December 22, 2024",
-    time: "7:00 PM IST",
-    speaker: "Prof. Michael Chen",
-    description: "Discover opportunities for global student exchange programs. Learn about the application process and benefits.",
-    registrationLink: "https://forms.google.com/placeholder",
-  },
-  {
-    id: 4,
-    title: "Scholarship Opportunities 2025",
-    date: "January 5, 2025",
-    time: "6:30 PM IST",
-    speaker: "Ms. Emily Rodriguez",
-    description: "Comprehensive guide to scholarships and fellowships worldwide. Tips for successful scholarship applications.",
-    registrationLink: "https://forms.google.com/placeholder",
-  },
-  {
-    id: 5,
-    title: "SOP Writing Masterclass",
-    date: "January 12, 2025",
-    time: "7:00 PM IST",
-    speaker: "Dr. James Wilson",
-    description: "Master the art of writing compelling Statements of Purpose. Learn from real examples and expert feedback.",
-    registrationLink: "https://forms.google.com/placeholder",
-  },
 ];
 
 const pastWebinars = [
   {
     title: "Brillianton Achievers' Dialogue",
+    subtitle: "Session 1",
     date: "December 27, 2025",
     time: "7:30 PM - 8:30 PM IST",
     speaker: "Rajaneesh Rajan, Eknath Wagh, Farseen Ali P",
     description: "Dreaming of a top global Master's or fellowship? Meet those who made it happen! Featuring Chevening Scholar, Harvard MPP Candidate, and Erasmus Mundus Scholar sharing their success stories.",
+    poster: "/webinar-posters/session-1-poster.jpg",
     achievers: [
       {
         name: "Rajaneesh Rajan",
@@ -105,21 +73,6 @@ const pastWebinars = [
         url: "https://youtu.be/-eDAsFpenLI?si=x8a0kGDv8rva90yK"
       }
     ]
-  },
-  {
-    title: "Global Education Trends 2024",
-    date: "November 20, 2024",
-    speaker: "Dr. Sarah Johnson",
-  },
-  {
-    title: "Building Your Academic Profile",
-    date: "November 10, 2024",
-    speaker: "Prof. Michael Chen",
-  },
-  {
-    title: "Navigating University Applications",
-    date: "October 28, 2024",
-    speaker: "Ms. Emily Rodriguez",
   },
 ];
 
@@ -185,19 +138,36 @@ export default function WebinarsPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
-                  className={`bg-gradient-to-br from-accent to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 ${
+                  className={`bg-gradient-to-br from-accent to-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 ${
                     webinar.achievers ? 'md:col-span-2 lg:col-span-3' : ''
                   }`}
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-xl font-bold text-text">{webinar.title}</h3>
-                    {webinar.subtitle && (
-                      <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
-                        {webinar.subtitle}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-gray-600 mb-6">{webinar.description}</p>
+                  {webinar.poster && (
+                    <div className="relative w-full h-64 md:h-80 overflow-hidden">
+                      <Image
+                        src={webinar.poster}
+                        alt={webinar.title}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5 flex items-center space-x-2">
+                        <Video className="w-4 h-4 text-primary" />
+                        <span className="text-xs font-semibold text-primary">Live Webinar</span>
+                      </div>
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className="text-xl font-bold text-text">{webinar.title}</h3>
+                      {webinar.subtitle && (
+                        <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                          {webinar.subtitle}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-gray-600 mb-6">{webinar.description}</p>
                   
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
@@ -233,24 +203,25 @@ export default function WebinarsPage() {
                     </div>
                   )}
 
-                  {webinar.contactEmail && (
-                    <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-                      <span className="text-gray-500">Contact:</span>
-                      <a href={`mailto:${webinar.contactEmail}`} className="text-primary hover:underline">
-                        {webinar.contactEmail}
-                      </a>
-                    </div>
-                  )}
+                    {webinar.contactEmail && (
+                      <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+                        <span className="text-gray-500">Contact:</span>
+                        <a href={`mailto:${webinar.contactEmail}`} className="text-primary hover:underline">
+                          {webinar.contactEmail}
+                        </a>
+                      </div>
+                    )}
 
-                  <a
-                    href={webinar.registrationLink}
-                    target={webinar.registrationLink.startsWith('mailto:') ? undefined : '_blank'}
-                    rel={webinar.registrationLink.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                    className="inline-flex items-center space-x-2 w-full justify-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors group"
-                  >
-                    <span>Register Now - Free!</span>
-                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
+                    <a
+                      href={webinar.registrationLink}
+                      target={webinar.registrationLink.startsWith('mailto:') ? undefined : '_blank'}
+                      rel={webinar.registrationLink.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                      className="inline-flex items-center space-x-2 w-full justify-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors group"
+                    >
+                      <span>Register Now - Free!</span>
+                      <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -265,16 +236,33 @@ export default function WebinarsPage() {
                 >
                   {upcomingWebinars.map((webinar) => (
                     <div key={webinar.id} className="min-w-full px-4">
-                      <div className="bg-gradient-to-br from-accent to-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <div className="flex items-start justify-between mb-4">
-                          <h3 className="text-xl font-bold text-text">{webinar.title}</h3>
-                          {webinar.subtitle && (
-                            <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
-                              {webinar.subtitle}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-gray-600 mb-6">{webinar.description}</p>
+                      <div className="bg-gradient-to-br from-accent to-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                        {webinar.poster && (
+                          <div className="relative w-full h-64 overflow-hidden">
+                            <Image
+                              src={webinar.poster}
+                              alt={webinar.title}
+                              fill
+                              className="object-cover"
+                              priority
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5 flex items-center space-x-2">
+                              <Video className="w-4 h-4 text-primary" />
+                              <span className="text-xs font-semibold text-primary">Live Webinar</span>
+                            </div>
+                          </div>
+                        )}
+                        <div className="p-6">
+                          <div className="flex items-start justify-between mb-4">
+                            <h3 className="text-xl font-bold text-text">{webinar.title}</h3>
+                            {webinar.subtitle && (
+                              <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                                {webinar.subtitle}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-gray-600 mb-6">{webinar.description}</p>
                         
                         <div className="space-y-3 mb-6">
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
@@ -310,24 +298,25 @@ export default function WebinarsPage() {
                           </div>
                         )}
 
-                        {webinar.contactEmail && (
-                          <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-                            <span className="text-gray-500">Contact:</span>
-                            <a href={`mailto:${webinar.contactEmail}`} className="text-primary hover:underline">
-                              {webinar.contactEmail}
-                            </a>
-                          </div>
-                        )}
+                          {webinar.contactEmail && (
+                            <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+                              <span className="text-gray-500">Contact:</span>
+                              <a href={`mailto:${webinar.contactEmail}`} className="text-primary hover:underline">
+                                {webinar.contactEmail}
+                              </a>
+                            </div>
+                          )}
 
-                        <a
-                          href={webinar.registrationLink}
-                          target={webinar.registrationLink.startsWith('mailto:') ? undefined : '_blank'}
-                          rel={webinar.registrationLink.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                          className="inline-flex items-center space-x-2 w-full justify-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors group"
-                        >
-                          <span>Register Now - Free!</span>
-                          <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </a>
+                          <a
+                            href={webinar.registrationLink}
+                            target={webinar.registrationLink.startsWith('mailto:') ? undefined : '_blank'}
+                            rel={webinar.registrationLink.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                            className="inline-flex items-center space-x-2 w-full justify-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors group"
+                          >
+                            <span>Register Now - Free!</span>
+                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -395,11 +384,28 @@ export default function WebinarsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 ${
+                  className={`bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 ${
                     webinar.achievers ? 'md:col-span-2 lg:col-span-3' : ''
                   }`}
                 >
-                  <h3 className="text-lg font-bold text-text mb-3">{webinar.title}</h3>
+                  {webinar.poster && (
+                    <div className="relative w-full h-64 md:h-80 overflow-hidden">
+                      <Image
+                        src={webinar.poster}
+                        alt={webinar.title}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      {webinar.subtitle && (
+                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5">
+                          <span className="text-xs font-semibold text-primary">{webinar.subtitle}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold text-text mb-3">{webinar.title}</h3>
                   <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
                     <Calendar className="w-4 h-4 text-primary" />
                     <span>{webinar.date}</span>
@@ -466,6 +472,7 @@ export default function WebinarsPage() {
                   ) : (
                     <p className="text-sm text-gray-500 mt-4 italic">Recording available soon</p>
                   )}
+                  </div>
                 </motion.div>
               ))}
             </div>
