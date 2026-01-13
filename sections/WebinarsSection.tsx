@@ -7,6 +7,15 @@ import { Calendar, Clock, User, ArrowRight, Video } from "lucide-react";
 
 const upcomingWebinars = [
   {
+    title: "Unlock Your Path to Oxford, Manchester & Chevening!",
+    subtitle: "Achievers' Dialogue Session 2",
+    date: "January 24, 2026",
+    time: "7:30 PM - 8:30 PM IST",
+    speaker: "Maknnoon Wani, Amiya Sur",
+    description: "Join us for a free webinar featuring Chevening Scholars from Oxford University and University of Manchester.",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop",
+  },
+  {
     title: "Pathways to Top Universities",
     date: "December 15, 2024",
     time: "6:00 PM IST",
@@ -79,7 +88,14 @@ export default function WebinarsSection() {
               
               {/* Content */}
               <div className="p-5 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold text-text mb-3 group-hover:text-primary transition-colors">{webinar.title}</h3>
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="text-lg md:text-xl font-bold text-text group-hover:text-primary transition-colors">{webinar.title}</h3>
+                  {webinar.subtitle && (
+                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full ml-2 flex-shrink-0">
+                      {webinar.subtitle}
+                    </span>
+                  )}
+                </div>
                 <p className="text-sm md:text-base text-gray-600 mb-5 line-clamp-2">{webinar.description}</p>
                 
                 <div className="space-y-2.5 mb-5">

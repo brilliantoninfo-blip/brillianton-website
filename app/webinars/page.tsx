@@ -3,11 +3,34 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Calendar, Clock, User, ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { Calendar, Clock, User, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Video } from "lucide-react";
 
 const upcomingWebinars = [
   {
     id: 1,
+    title: "Unlock Your Path to Oxford, Manchester & Chevening!",
+    subtitle: "Achievers' Dialogue Session 2",
+    date: "January 24, 2026",
+    time: "7:30 PM - 8:30 PM IST",
+    speaker: "Maknnoon Wani, Amiya Sur",
+    description: "Join us for a free webinar featuring Chevening Scholars from Oxford University and University of Manchester. Learn about their journey and get insights on securing prestigious scholarships and admissions to top UK universities.",
+    achievers: [
+      {
+        name: "Maknnoon Wani",
+        achievement: "Chevening Scholar (2023-24)",
+        university: "Oxford University, UK"
+      },
+      {
+        name: "Amiya Sur",
+        achievement: "Chevening Scholar (2023-23)",
+        university: "University of Manchester, UK"
+      }
+    ],
+    contactEmail: "brilliantoninfo@gmail.com",
+    registrationLink: "https://forms.gle/GPQKB8oF7PBe3AYW6",
+  },
+  {
+    id: 2,
     title: "Pathways to Top Universities",
     date: "December 15, 2024",
     time: "6:00 PM IST",
@@ -16,7 +39,7 @@ const upcomingWebinars = [
     registrationLink: "https://forms.google.com/placeholder",
   },
   {
-    id: 2,
+    id: 3,
     title: "International Exchange Programs",
     date: "December 22, 2024",
     time: "7:00 PM IST",
@@ -25,7 +48,7 @@ const upcomingWebinars = [
     registrationLink: "https://forms.google.com/placeholder",
   },
   {
-    id: 3,
+    id: 4,
     title: "Scholarship Opportunities 2025",
     date: "January 5, 2025",
     time: "6:30 PM IST",
@@ -34,7 +57,7 @@ const upcomingWebinars = [
     registrationLink: "https://forms.google.com/placeholder",
   },
   {
-    id: 4,
+    id: 5,
     title: "SOP Writing Masterclass",
     date: "January 12, 2025",
     time: "7:00 PM IST",
@@ -45,6 +68,44 @@ const upcomingWebinars = [
 ];
 
 const pastWebinars = [
+  {
+    title: "Brillianton Achievers' Dialogue",
+    date: "December 27, 2025",
+    time: "7:30 PM - 8:30 PM IST",
+    speaker: "Rajaneesh Rajan, Eknath Wagh, Farseen Ali P",
+    description: "Dreaming of a top global Master's or fellowship? Meet those who made it happen! Featuring Chevening Scholar, Harvard MPP Candidate, and Erasmus Mundus Scholar sharing their success stories.",
+    achievers: [
+      {
+        name: "Rajaneesh Rajan",
+        achievement: "Chevening Scholar (2021-22)",
+        university: "University of Sussex, UK"
+      },
+      {
+        name: "Eknath Wagh",
+        achievement: "MPP Candidate (2025-27)",
+        university: "Harvard University, USA"
+      },
+      {
+        name: "Farseen Ali P",
+        achievement: "Erasmus Mundus Joint Master Program (2022-24)"
+      }
+    ],
+    contactEmail: "brilliantoninfo@gmail.com",
+    recordings: [
+      {
+        title: "Part 1",
+        url: "https://youtu.be/xcZ1CeV62_0?si=R55bjMdyEX7WWOrJ"
+      },
+      {
+        title: "Part 2",
+        url: "https://youtu.be/rALI_s46s9E?si=QN-mW7vx2L3AsUdM"
+      },
+      {
+        title: "Part 3",
+        url: "https://youtu.be/-eDAsFpenLI?si=x8a0kGDv8rva90yK"
+      }
+    ]
+  },
   {
     title: "Global Education Trends 2024",
     date: "November 20, 2024",
@@ -124,9 +185,18 @@ export default function WebinarsPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
-                  className="bg-gradient-to-br from-accent to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
+                  className={`bg-gradient-to-br from-accent to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 ${
+                    webinar.achievers ? 'md:col-span-2 lg:col-span-3' : ''
+                  }`}
                 >
-                  <h3 className="text-xl font-bold text-text mb-4">{webinar.title}</h3>
+                  <div className="flex items-start justify-between mb-4">
+                    <h3 className="text-xl font-bold text-text">{webinar.title}</h3>
+                    {webinar.subtitle && (
+                      <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                        {webinar.subtitle}
+                      </span>
+                    )}
+                  </div>
                   <p className="text-gray-600 mb-6">{webinar.description}</p>
                   
                   <div className="space-y-3 mb-6">
@@ -138,19 +208,47 @@ export default function WebinarsPage() {
                       <Clock className="w-4 h-4 text-primary" />
                       <span>{webinar.time}</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <User className="w-4 h-4 text-primary" />
-                      <span>{webinar.speaker}</span>
-                    </div>
+                    {webinar.speaker && (
+                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                        <User className="w-4 h-4 text-primary" />
+                        <span>{webinar.speaker}</span>
+                      </div>
+                    )}
                   </div>
+
+                  {webinar.achievers && (
+                    <div className="mb-6 space-y-3">
+                      <h4 className="text-sm font-semibold text-text">Featured Speakers:</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {webinar.achievers.map((achiever, idx) => (
+                          <div key={idx} className="bg-white/80 rounded-lg p-3 border border-gray-200">
+                            <p className="text-sm font-semibold text-text">{achiever.name}</p>
+                            <p className="text-xs text-gray-700">{achiever.achievement}</p>
+                            {achiever.university && (
+                              <p className="text-xs text-gray-600">{achiever.university}</p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {webinar.contactEmail && (
+                    <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+                      <span className="text-gray-500">Contact:</span>
+                      <a href={`mailto:${webinar.contactEmail}`} className="text-primary hover:underline">
+                        {webinar.contactEmail}
+                      </a>
+                    </div>
+                  )}
 
                   <a
                     href={webinar.registrationLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={webinar.registrationLink.startsWith('mailto:') ? undefined : '_blank'}
+                    rel={webinar.registrationLink.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
                     className="inline-flex items-center space-x-2 w-full justify-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors group"
                   >
-                    <span>Register Now</span>
+                    <span>Register Now - Free!</span>
                     <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </motion.div>
@@ -168,7 +266,14 @@ export default function WebinarsPage() {
                   {upcomingWebinars.map((webinar) => (
                     <div key={webinar.id} className="min-w-full px-4">
                       <div className="bg-gradient-to-br from-accent to-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 className="text-xl font-bold text-text mb-4">{webinar.title}</h3>
+                        <div className="flex items-start justify-between mb-4">
+                          <h3 className="text-xl font-bold text-text">{webinar.title}</h3>
+                          {webinar.subtitle && (
+                            <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                              {webinar.subtitle}
+                            </span>
+                          )}
+                        </div>
                         <p className="text-gray-600 mb-6">{webinar.description}</p>
                         
                         <div className="space-y-3 mb-6">
@@ -180,19 +285,47 @@ export default function WebinarsPage() {
                             <Clock className="w-4 h-4 text-primary" />
                             <span>{webinar.time}</span>
                           </div>
-                          <div className="flex items-center space-x-2 text-sm text-gray-600">
-                            <User className="w-4 h-4 text-primary" />
-                            <span>{webinar.speaker}</span>
-                          </div>
+                          {webinar.speaker && (
+                            <div className="flex items-center space-x-2 text-sm text-gray-600">
+                              <User className="w-4 h-4 text-primary" />
+                              <span>{webinar.speaker}</span>
+                            </div>
+                          )}
                         </div>
+
+                        {webinar.achievers && (
+                          <div className="mb-6 space-y-3">
+                            <h4 className="text-sm font-semibold text-text">Featured Speakers:</h4>
+                            <div className="space-y-3">
+                              {webinar.achievers.map((achiever, idx) => (
+                                <div key={idx} className="bg-white/80 rounded-lg p-3 border border-gray-200">
+                                  <p className="text-sm font-semibold text-text">{achiever.name}</p>
+                                  <p className="text-xs text-gray-700">{achiever.achievement}</p>
+                                  {achiever.university && (
+                                    <p className="text-xs text-gray-600">{achiever.university}</p>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {webinar.contactEmail && (
+                          <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+                            <span className="text-gray-500">Contact:</span>
+                            <a href={`mailto:${webinar.contactEmail}`} className="text-primary hover:underline">
+                              {webinar.contactEmail}
+                            </a>
+                          </div>
+                        )}
 
                         <a
                           href={webinar.registrationLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          target={webinar.registrationLink.startsWith('mailto:') ? undefined : '_blank'}
+                          rel={webinar.registrationLink.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
                           className="inline-flex items-center space-x-2 w-full justify-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors group"
                         >
-                          <span>Register Now</span>
+                          <span>Register Now - Free!</span>
                           <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </a>
                       </div>
@@ -254,7 +387,7 @@ export default function WebinarsPage() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {pastWebinars.map((webinar, index) => (
                 <motion.div
                   key={webinar.title}
@@ -262,18 +395,77 @@ export default function WebinarsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300"
+                  className={`bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 ${
+                    webinar.achievers ? 'md:col-span-2 lg:col-span-3' : ''
+                  }`}
                 >
                   <h3 className="text-lg font-bold text-text mb-3">{webinar.title}</h3>
                   <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
                     <Calendar className="w-4 h-4 text-primary" />
                     <span>{webinar.date}</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <User className="w-4 h-4 text-primary" />
-                    <span>{webinar.speaker}</span>
-                  </div>
-                  <p className="text-sm text-gray-500 mt-4 italic">Recording available soon</p>
+                  {webinar.time && (
+                    <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
+                      <Clock className="w-4 h-4 text-primary" />
+                      <span>{webinar.time}</span>
+                    </div>
+                  )}
+                  {webinar.speaker && (
+                    <div className="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                      <User className="w-4 h-4 text-primary" />
+                      <span>{webinar.speaker}</span>
+                    </div>
+                  )}
+                  {webinar.description && (
+                    <p className="text-sm text-gray-600 mb-4">{webinar.description}</p>
+                  )}
+                  {webinar.achievers && (
+                    <div className="mb-4 space-y-3">
+                      <h4 className="text-sm font-semibold text-text">Featured Achievers:</h4>
+                      {webinar.achievers.map((achiever, idx) => (
+                        <div key={idx} className="bg-accent/50 rounded-lg p-3">
+                          <p className="text-sm font-semibold text-text">{achiever.name}</p>
+                          <p className="text-xs text-gray-700">{achiever.achievement}</p>
+                          {achiever.university && (
+                            <p className="text-xs text-gray-600">{achiever.university}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {webinar.contactEmail && (
+                    <div className="flex items-center space-x-2 text-sm text-gray-600 mt-4 pt-4 border-t border-gray-200">
+                      <span className="text-gray-500">Contact:</span>
+                      <a href={`mailto:${webinar.contactEmail}`} className="text-primary hover:underline">
+                        {webinar.contactEmail}
+                      </a>
+                    </div>
+                  )}
+                  {webinar.recordings && webinar.recordings.length > 0 ? (
+                    <div className="mt-4 pt-4 border-t border-gray-200">
+                      <h4 className="text-sm font-semibold text-text mb-3 flex items-center space-x-2">
+                        <Video className="w-4 h-4 text-primary" />
+                        <span>Watch Recording:</span>
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {webinar.recordings.map((recording, idx) => (
+                          <a
+                            key={idx}
+                            href={recording.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-secondary transition-colors group"
+                          >
+                            <Video className="w-4 h-4" />
+                            <span>{recording.title}</span>
+                            <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-sm text-gray-500 mt-4 italic">Recording available soon</p>
+                  )}
                 </motion.div>
               ))}
             </div>
