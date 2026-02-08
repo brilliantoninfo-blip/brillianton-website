@@ -6,34 +6,45 @@ import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, User, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Video } from "lucide-react";
 
-const upcomingWebinars = [
+const upcomingWebinars = [];
+
+const pastWebinars = [
   {
-    id: 1,
     title: "Unlock Your Path to Oxford, Manchester & Chevening!",
     subtitle: "Achievers' Dialogue Session 2",
     date: "January 24, 2026",
     time: "7:30 PM - 8:30 PM IST",
-    speaker: "Maknnoon Wani, Amiya Sur",
+    speaker: "Maknoon Wani, Amiya Sur",
     description: "Join us for a free webinar featuring Chevening Scholars from Oxford University and University of Manchester. Learn about their journey and get insights on securing prestigious scholarships and admissions to top UK universities.",
-    poster: "/webinar-posters/session-2-poster.jpg",
+    poster: "/webinar-posters/session-2-amiya-sur.jpg",
+    posters: [
+      "/webinar-posters/session-2-amiya-sur.jpg",
+      "/webinar-posters/session-2-maknoon-wani.jpg"
+    ],
     achievers: [
       {
-        name: "Maknnoon Wani",
+        name: "Maknoon Wani",
         achievement: "Chevening Scholar (2023-24)",
         university: "Oxford University, UK"
       },
       {
         name: "Amiya Sur",
-        achievement: "Chevening Scholar (2023-23)",
+        achievement: "Chevening Scholar (2022-23)",
         university: "University of Manchester, UK"
       }
     ],
     contactEmail: "brilliantoninfo@gmail.com",
-    registrationLink: "https://forms.gle/GPQKB8oF7PBe3AYW6",
+    recordings: [
+      {
+        title: "Maknoon Wani - Part 1",
+        url: "https://youtu.be/VhBIMX4VkmM?si=r0GWLX6ub8Hgz85"
+      },
+      {
+        title: "Amiya Sur - Part 2",
+        url: "https://youtu.be/hREIspOhsBI?si=BI65W11JJLdJnhwO"
+      }
+    ]
   },
-];
-
-const pastWebinars = [
   {
     title: "Brillianton Achievers' Dialogue",
     subtitle: "Session 1",
@@ -129,6 +140,7 @@ export default function WebinarsPage() {
             </motion.div>
 
             {/* Desktop Grid View */}
+            {upcomingWebinars.length > 0 ? (
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {upcomingWebinars.map((webinar, index) => (
                 <motion.div
@@ -225,8 +237,14 @@ export default function WebinarsPage() {
                 </motion.div>
               ))}
             </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-lg text-gray-600">No upcoming webinars at the moment. Check back soon!</p>
+              </div>
+            )}
 
             {/* Mobile Slider View */}
+            {upcomingWebinars.length > 0 && (
             <div className="md:hidden relative">
               <div className="overflow-hidden rounded-2xl">
                 <motion.div
@@ -353,6 +371,7 @@ export default function WebinarsPage() {
                 </button>
               </div>
             </div>
+            )}
           </div>
         </div>
       </section>
@@ -388,7 +407,26 @@ export default function WebinarsPage() {
                     webinar.achievers ? 'md:col-span-2 lg:col-span-3' : ''
                   }`}
                 >
-                  {webinar.poster && (
+                  {webinar.posters && webinar.posters.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-2 bg-gray-50">
+                      {webinar.posters.map((poster, posterIdx) => (
+                        <div key={posterIdx} className="relative w-full h-64 md:h-80 overflow-hidden rounded-lg">
+                          <Image
+                            src={poster}
+                            alt={`${webinar.title} - Poster ${posterIdx + 1}`}
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                          {posterIdx === 0 && webinar.subtitle && (
+                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5">
+                              <span className="text-xs font-semibold text-primary">{webinar.subtitle}</span>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  ) : webinar.poster && (
                     <div className="relative w-full h-64 md:h-80 overflow-hidden">
                       <Image
                         src={webinar.poster}
