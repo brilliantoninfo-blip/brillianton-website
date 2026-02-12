@@ -6,9 +6,36 @@ import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, User, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Video } from "lucide-react";
 
-const upcomingWebinars = [];
+type WebinarRecording = {
+  title: string;
+  url: string;
+};
 
-const pastWebinars = [
+type WebinarAchiever = {
+  name: string;
+  achievement: string;
+  university?: string;
+};
+
+type Webinar = {
+  id?: number;
+  title: string;
+  subtitle?: string;
+  date: string;
+  time?: string;
+  speaker?: string;
+  description?: string;
+  poster?: string;
+  posters?: string[];
+  achievers?: WebinarAchiever[];
+  contactEmail?: string;
+  registrationLink?: string;
+  recordings?: WebinarRecording[];
+};
+
+const upcomingWebinars: Webinar[] = [];
+
+const pastWebinars: Webinar[] = [
   {
     title: "Unlock Your Path to Oxford, Manchester & Chevening!",
     subtitle: "Achievers' Dialogue Session 2",
