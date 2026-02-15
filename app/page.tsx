@@ -13,7 +13,6 @@ import ExchangeFeature from "@/sections/ExchangeFeature";
 import FellowshipHighlights from "@/sections/FellowshipHighlights";
 import GlobalMentorship from "@/sections/GlobalMentorship";
 import TestimonialsSection from "@/sections/TestimonialsSection";
-import InstagramSection from "@/sections/InstagramSection";
 
 export default function Home() {
   return (
@@ -27,7 +26,6 @@ export default function Home() {
       <FellowshipHighlights />
       <GlobalMentorship />
       <TestimonialsSection />
-      <InstagramSection />
     </div>
   );
 }
