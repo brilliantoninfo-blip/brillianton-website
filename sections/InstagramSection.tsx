@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 
-const INSTAGRAM_EMBED_URLS = [
+const INSTAGRAM_POSTS = [
   "https://www.instagram.com/reel/DUp4bleE6i1/",
   "https://www.instagram.com/p/DUcnShcEUe0/",
   "https://www.instagram.com/p/DUZ4_eAkXml/",
@@ -13,54 +13,12 @@ const INSTAGRAM_EMBED_URLS = [
   "https://www.instagram.com/p/DUHzm7JESFS/",
 ];
 
+function toEmbedUrl(postUrl: string): string {
+  const clean = postUrl.replace(/\/?(\?.*)?$/, "");
+  return `${clean}/embed/`;
+}
+
 export default function InstagramSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scriptLoadedRef = useRef(false);
-
-  useEffect(() => {
-    const runEmbeds = () => {
-      const win = window as Window & { instgrm?: { Embeds: { process(): void } } };
-      if (win.instgrm) win.instgrm.Embeds.process();
-    };
-
-    if (scriptLoadedRef.current) {
-      runEmbeds();
-      return;
-    }
-    scriptLoadedRef.current = true;
-
-    const existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
-    if (existing) {
-      existing.addEventListener("load", runEmbeds);
-      runEmbeds();
-      return () => existing.removeEventListener("load", runEmbeds);
-    }
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://www.instagram.com/embed.js";
-    script.onload = () => {
-      runEmbeds();
-    };
-    document.body.appendChild(script);
-  }, []);
-
-  // Re-run embed process when section scrolls into view (handles below-the-fold loading)
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0]?.isIntersecting) return;
-        const win = window as Window & { instgrm?: { Embeds: { process(): void } } };
-        if (win.instgrm) win.instgrm.Embeds.process();
-      },
-      { threshold: 0.1, rootMargin: "50px" }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="py-20 bg-accent/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +38,6 @@ export default function InstagramSection() {
         </motion.div>
 
         <motion.div
-          ref={containerRef}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -91,21 +48,30 @@ export default function InstagramSection() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center"
             aria-label="Instagram posts grid"
           >
-            {INSTAGRAM_EMBED_URLS.map((url) => (
+            {INSTAGRAM_POSTS.map((url) => (
               <div
                 key={url}
-                className="w-full min-w-0 max-w-[540px] flex justify-center [&_.instagram-media]:min-w-[326px] [&_.instagram-media]:max-w-[540px] [&_.instagram-media]:!w-full"
+                className="w-full flex flex-col items-center gap-2"
               >
-                <blockquote
-                  className="instagram-media"
-                  data-instgrm-captioned
-                  data-instgrm-permalink={url}
-                  data-instgrm-version="14"
+                <div className="w-full min-w-[326px] max-w-[540px] rounded-lg overflow-hidden shadow-md bg-white">
+                  <iframe
+                    src={toEmbedUrl(url)}
+                    title={`Instagram post ${url}`}
+                    className="w-full border-0"
+                    style={{ height: 630 }}
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </div>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 bg-white/80 hover:bg-white hover:text-primary rounded-lg border border-gray-200 shadow-sm transition-colors"
                 >
-                  <a href={url} target="_blank" rel="noopener noreferrer">
-                    View this post on Instagram
-                  </a>
-                </blockquote>
+                  View on Instagram
+                  <ExternalLink className="w-4 h-4" />
+                </a>
               </div>
             ))}
           </div>
