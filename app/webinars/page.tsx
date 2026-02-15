@@ -250,16 +250,6 @@ export default function WebinarsPage() {
                         </a>
                       </div>
                     )}
-
-                    <a
-                      href={webinar.registrationLink}
-                      target={webinar.registrationLink.startsWith('mailto:') ? undefined : '_blank'}
-                      rel={webinar.registrationLink.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                      className="inline-flex items-center space-x-2 w-full justify-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors group"
-                    >
-                      <span>Register Now - Free!</span>
-                      <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </a>
                   </div>
                 </motion.div>
               ))}
@@ -351,16 +341,6 @@ export default function WebinarsPage() {
                               </a>
                             </div>
                           )}
-
-                          <a
-                            href={webinar.registrationLink}
-                            target={webinar.registrationLink.startsWith('mailto:') ? undefined : '_blank'}
-                            rel={webinar.registrationLink.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                            className="inline-flex items-center space-x-2 w-full justify-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors group"
-                          >
-                            <span>Register Now - Free!</span>
-                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </a>
                         </div>
                       </div>
                     </div>
