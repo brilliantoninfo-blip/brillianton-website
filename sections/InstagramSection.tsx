@@ -1,7 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import Script from "next/script";
 
 const INSTAGRAM_EMBED_URLS = [
   "https://www.instagram.com/reel/DUp4bleE6i1/",
@@ -14,6 +14,53 @@ const INSTAGRAM_EMBED_URLS = [
 ];
 
 export default function InstagramSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scriptLoadedRef = useRef(false);
+
+  useEffect(() => {
+    const runEmbeds = () => {
+      const win = window as Window & { instgrm?: { Embeds: { process(): void } } };
+      if (win.instgrm) win.instgrm.Embeds.process();
+    };
+
+    if (scriptLoadedRef.current) {
+      runEmbeds();
+      return;
+    }
+    scriptLoadedRef.current = true;
+
+    const existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
+    if (existing) {
+      existing.addEventListener("load", runEmbeds);
+      runEmbeds();
+      return () => existing.removeEventListener("load", runEmbeds);
+    }
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.instagram.com/embed.js";
+    script.onload = () => {
+      runEmbeds();
+    };
+    document.body.appendChild(script);
+  }, []);
+
+  // Re-run embed process when section scrolls into view (handles below-the-fold loading)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        const win = window as Window & { instgrm?: { Embeds: { process(): void } } };
+        if (win.instgrm) win.instgrm.Embeds.process();
+      },
+      { threshold: 0.1, rootMargin: "50px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="py-20 bg-accent/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,6 +80,7 @@ export default function InstagramSection() {
         </motion.div>
 
         <motion.div
+          ref={containerRef}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -61,17 +109,6 @@ export default function InstagramSection() {
               </div>
             ))}
           </div>
-
-          <Script
-            src="https://www.instagram.com/embed.js"
-            strategy="lazyOnload"
-            onLoad={() => {
-              const win = window as Window & { instgrm?: { Embeds: { process(): void } } };
-              if (typeof win.instgrm !== "undefined") {
-                win.instgrm.Embeds.process();
-              }
-            }}
-          />
         </motion.div>
       </div>
     </section>
