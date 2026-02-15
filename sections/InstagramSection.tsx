@@ -66,8 +66,9 @@ export default function InstagramSection() {
             src="https://www.instagram.com/embed.js"
             strategy="lazyOnload"
             onLoad={() => {
-              if (typeof window !== "undefined" && window.instgrm) {
-                window.instgrm.Embeds.process();
+              const win = window as Window & { instgrm?: { Embeds: { process(): void } } };
+              if (typeof win.instgrm !== "undefined") {
+                win.instgrm.Embeds.process();
               }
             }}
           />
