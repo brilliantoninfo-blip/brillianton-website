@@ -31,7 +31,12 @@ export default function InstagramSection() {
         >
           <Script
             src="https://elfsightcdn.com/platform.js"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
+            onLoad={() => {
+              if (window.elfsight) {
+                window.elfsight.load();
+              }
+            }}
           />
           <div
             className="elfsight-app-083d3f42-a92a-4cbe-96f6-489ebff5f980"
