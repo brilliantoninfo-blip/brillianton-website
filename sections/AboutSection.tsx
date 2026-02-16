@@ -17,7 +17,7 @@ export default function AboutSection() {
             className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
           >
             <Image
-              src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop"
+              src="/Brillianton.JPG"
               alt="International students collaborating"
               fill
               className="object-cover"
