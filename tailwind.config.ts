@@ -2,40 +2,55 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./sections/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        primary: "#0D47A1",
-        secondary: "#1565C0",
-        accent: "#EEF5FF",
-        text: "#0A0A0A",
+        // Royal & Sunlight — refined from the Brillianton brochure
+        ink: "#0B1236", // deep navy: text + dark chapters
+        navy: "#14206B",
+        royal: "#1D3FE0", // brand royal blue (UI, links, buttons)
+        deep: "#0A30C4", // brochure field blue — matches the deck illustrations
+        azure: "#5B7CFF",
+        sky: "#AFC3FF",
+        sun: "#FFD43B", // brilliant yellow accent
+        paper: "#FAF8F3", // warm ivory
+        sand: "#F1EDE3",
+        mist: "#DCE3FA",
       },
-      animation: {
-        "fade-in": "fadeIn 0.6s ease-in-out",
-        "slide-up": "slideUp 0.6s ease-out",
-        "slide-in": "slideIn 0.6s ease-out",
+      fontFamily: {
+        sans: ["var(--font-archivo)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+      },
+      fontSize: {
+        mega: ["clamp(2.75rem, 8.1vw, 9.4rem)", { lineHeight: "0.9", letterSpacing: "-0.045em" }],
+        huge: ["clamp(2.8rem, 7.6vw, 8rem)", { lineHeight: "0.9", letterSpacing: "-0.04em" }],
+        display: ["clamp(2.2rem, 5vw, 5rem)", { lineHeight: "0.95", letterSpacing: "-0.035em" }],
+        title: ["clamp(1.6rem, 2.8vw, 2.6rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
+      },
+      maxWidth: { frame: "1440px" },
+      transitionTimingFunction: {
+        expo: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
       keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+        marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
+        breathe: { "0%,100%": { transform: "scale(1)" }, "50%": { transform: "scale(1.015)" } },
+        pulseRing: {
+          "0%": { transform: "scale(1)", opacity: "0.6" },
+          "100%": { transform: "scale(1.6)", opacity: "0" },
         },
-        slideUp: {
-          "0%": { transform: "translateY(20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        slideIn: {
-          "0%": { transform: "translateX(-20px)", opacity: "0" },
-          "100%": { transform: "translateX(0)", opacity: "1" },
-        },
+      },
+      animation: {
+        marquee: "marquee 40s linear infinite",
+        breathe: "breathe 6s ease-in-out infinite",
+        pulseRing: "pulseRing 2.4s cubic-bezier(0.16,1,0.3,1) infinite",
       },
     },
   },
   plugins: [],
 };
 export default config;
-

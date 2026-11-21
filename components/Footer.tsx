@@ -1,147 +1,103 @@
-"use client";
-
 import Link from "next/link";
-import Image from "next/image";
-import { Mail, Phone, Instagram } from "lucide-react";
-import { motion } from "framer-motion";
+import { nav, programmes, site } from "@/lib/site";
+import { Mark } from "@/components/ui/primitives";
+import { Logo } from "@/components/Header";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
-  const footerLinks = {
-    company: [
-      { href: "/about", label: "About Us" },
-      { href: "/mentoring", label: "Mentoring" },
-      { href: "/international-collaboration", label: "Collaboration" },
-      { href: "/contact", label: "Contact" },
-    ],
-    programs: [
-      { href: "/student-exchange", label: "Student Exchange" },
-      { href: "/webinars", label: "Webinars" },
-      { href: "/opportunities", label: "Opportunities" },
-    ],
-  };
-
-  const socialLinks = [
-    { icon: Instagram, href: "https://www.instagram.com/brilliantonglobal?igsh=OWZ1ZzM5NmNqZ2h3", label: "Instagram" },
-  ];
-
+  const year = new Date().getFullYear();
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Logo with white filter for dark background */}
-            <div className="relative h-12 w-40 mb-4">
-              <Image
-                src="/brillianton-logo.svg"
-                alt="Brillianton Global Education"
-                fill
-                sizes="160px"
-                className="object-contain brightness-0 invert"
-              />
-            </div>
-            <p className="text-gray-400 text-sm mb-4">
-              Global Mentoring for a Global Mindset.
+    <footer className="relative overflow-hidden bg-ink text-white">
+      <div className="grid-lines absolute inset-0 opacity-60" aria-hidden />
+      <div className="frame relative pb-10 pt-24">
+        <div className="grid gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Logo />
+            <p className="mt-8 max-w-sm text-lg leading-relaxed text-white/70">
+              An international academic mentorship organisation. <span className="italic-serif text-white">Global vision, personal guidance.</span>
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
-                    aria-label={social.label}
-                  >
-                    <Icon size={18} />
-                  </a>
-                );
-              })}
+            <address className="mt-8 not-italic leading-relaxed text-white/60">
+              {site.address.line1}
+              <br />
+              {site.address.city}, {site.address.region}, {site.address.country}
+            </address>
+          </div>
+
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-7">
+            <div>
+              <h2 className="eyebrow text-white/40">Navigate</h2>
+              <ul className="mt-6 space-y-3">
+                {nav.map((n) => (
+                  <li key={n.href}>
+                    <Link href={n.href} className="text-white/80 transition hover:text-sun">
+                      {n.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </motion.div>
-
-          {/* Company Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h3 className="font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              {footerLinks.company.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-accent transition-colors text-sm"
-                  >
-                    {link.label}
+            <div>
+              <h2 className="eyebrow text-white/40">Programmes</h2>
+              <ul className="mt-6 space-y-3">
+                {programmes.map((p) => (
+                  <li key={p.slug}>
+                    <Link href={`/programmes#${p.slug}`} className="text-white/80 transition hover:text-sun">
+                      {p.name}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link href="/programmes#institutions" className="text-white/80 transition hover:text-sun">
+                    For Institutions
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Programs Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h3 className="font-semibold mb-4">Programs</h3>
-            <ul className="space-y-2">
-              {footerLinks.programs.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-accent transition-colors text-sm"
-                  >
-                    {link.label}
+                <li>
+                  <Link href="/insights#sessions" className="text-white/80 transition hover:text-sun">
+                    Sessions
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h3 className="font-semibold mb-4">Contact</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-2 text-gray-400 text-sm">
-                <Mail size={16} />
-                <a href="mailto:brilliantoninfo@gmail.com" className="hover:text-accent transition-colors">
-                  brilliantoninfo@gmail.com
-                </a>
-              </li>
-              <li className="flex items-center space-x-2 text-gray-400 text-sm">
-                <Phone size={16} />
-                <a href="tel:+919778117553" className="hover:text-accent transition-colors">
-                  +91 97781 17553
-                </a>
-              </li>
-            </ul>
-          </motion.div>
+                <li>
+                  <Link href="/insights#webinars" className="text-white/80 transition hover:text-sun">
+                    Webinars
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="col-span-2 sm:col-span-1">
+              <h2 className="eyebrow text-white/40">Connect</h2>
+              <ul className="mt-6 space-y-3">
+                <li>
+                  <a href={`mailto:${site.email}`} className="break-all text-white/80 transition hover:text-sun">
+                    {site.email}
+                  </a>
+                </li>
+                <li>
+                  <a href={site.phoneHref} className="text-white/80 transition hover:text-sun">
+                    {site.phone}
+                  </a>
+                </li>
+                <li>
+                  <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="text-white/80 transition hover:text-sun">
+                    WhatsApp
+                  </a>
+                </li>
+                <li>
+                  <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="text-white/80 transition hover:text-sun">
+                    Instagram {site.instagramHandle}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-          <p>
-            © {currentYear} Brillianton International. All Rights Reserved.
-          </p>
+        <div aria-hidden className="mt-24">
+          <Mark className="mb-6 h-10 w-auto text-royal sm:h-14" capClassName="text-sun" />
+          <p className="display-wide select-none whitespace-nowrap text-[10.2vw] font-extrabold leading-[0.8] tracking-[-0.05em] text-white min-[1440px]:text-[9.4rem]">BRILLIANTON</p>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row sm:justify-between">
+          <p>© {year} Brillianton Global Education. All rights reserved.</p>
+          <p>Mentorship-led. Never a guarantee of admission or funding.</p>
         </div>
       </div>
     </footer>

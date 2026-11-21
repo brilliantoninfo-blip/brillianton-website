@@ -1,34 +1,31 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Users, Globe, GraduationCap, TrendingUp, MapPin, Star } from "lucide-react";
-import HeroSection from "@/sections/HeroSection";
-import AboutSection from "@/sections/AboutSection";
-import FocusAreas from "@/sections/FocusAreas";
-import StatsSection from "@/sections/StatsSection";
-import WebinarsSection from "@/sections/WebinarsSection";
-import ExchangeFeature from "@/sections/ExchangeFeature";
-import FellowshipHighlights from "@/sections/FellowshipHighlights";
-import GlobalMentorship from "@/sections/GlobalMentorship";
-import TestimonialsSection from "@/sections/TestimonialsSection";
-import InstagramSection from "@/sections/InstagramSection";
+import Hero from "@/sections/home/Hero";
+import Vision from "@/sections/home/Vision";
+import Programmes from "@/sections/home/Programmes";
+import MeetBrill from "@/sections/home/MeetBrill";
+import Opportunities from "@/sections/home/Opportunities";
+import WhyBrillianton from "@/sections/home/WhyBrillianton";
+import Approach from "@/sections/home/Approach";
+import Mentors from "@/sections/home/Mentors";
+import InsightsPreview from "@/sections/home/InsightsPreview";
+import FinalCTA from "@/sections/home/FinalCTA";
+import InstagramWall from "@/sections/home/InstagramWall";
+import CampusMoments from "@/sections/home/CampusMoments";
 
 export default function Home() {
   return (
-    <div className="pt-20">
-      <HeroSection />
-      <AboutSection />
-      <FocusAreas />
-      <StatsSection />
-      <WebinarsSection />
-      <ExchangeFeature />
-      <FellowshipHighlights />
-      <GlobalMentorship />
-      <TestimonialsSection />
-      <InstagramSection />
-    </div>
+    <>
+      <Hero />
+      <Vision />
+      <Programmes />
+      <MeetBrill />
+      <Opportunities />
+      <WhyBrillianton />
+      <Approach />
+      <CampusMoments />
+      <Mentors />
+      <InsightsPreview />
+      <InstagramWall />
+      <FinalCTA />
+    </>
   );
 }
-
