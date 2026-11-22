@@ -22,7 +22,6 @@ export function FocusList({ items, tone }: { items: Programme["focus"]; tone: "b
             <button
               type="button"
               onClick={() => setActive(i)}
-              onMouseEnter={() => setActive(i)}
               aria-expanded={on}
               className="flex w-full items-center gap-5 py-4 text-left"
             >
