@@ -8,7 +8,7 @@ import FAQ from "@/components/FAQ";
 import { institutionServices, photos } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Programmes — Mission QS100 (Grades 8–12) & Future Fellows Scholarships Mentorship",
+  title: "Premium University Admission Mentorship Program — Mission QS100 & Future Fellows",
   description:
     "Mission QS100 mentors Grades 8–12 students for Oxford, Cambridge, Ivy League and QS Top 100 admissions. Future Fellows prepares graduates for fully funded fellowships like Fulbright, Chevening and DAAD. Plus programmes for schools and colleges.",
   alternates: { canonical: "/programmes" },

@@ -22,14 +22,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Brillianton Global Education | Top University Admission & Scholarship Mentorship, Kerala",
+    default: "Premium University Admission Mentorship Program | Brillianton Global Education",
     template: "%s | Brillianton Global Education",
   },
   description: site.description,
   keywords: [
     "admission to top universities abroad",
     "Oxford Cambridge admission guidance India",
-    "Ivy League admission mentorship",
+    "Ivy League admission mentorship program",
+    "premium university admission mentorship program",
     "QS top 100 university admission",
     "fully funded scholarships for Indian students",
     "Fulbright Chevening DAAD Erasmus Mundus guidance",

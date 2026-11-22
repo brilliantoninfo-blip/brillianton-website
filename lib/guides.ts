@@ -24,10 +24,13 @@ export type Guide = {
 export const guides: Guide[] = [
   {
     slug: "top-university-admissions",
-    metaTitle: "Admission Guidance for Oxford, Cambridge, Ivy League & QS Top 100 Universities",
+    metaTitle: "Ivy League & Oxbridge Admission Mentorship Program — Premium University Admissions from Kerala",
     metaDescription:
-      "Structured mentorship from Kerala for Grades 8–12 students aiming at Oxford, Cambridge, the Ivy League and QS Top 100 universities — profile building, research exposure, application strategy and interview preparation.",
+      "A premium university admission mentorship program from Kerala for Grades 8–12 students aiming at Oxford, Cambridge, the Ivy League and QS Top 100 universities — profile building, research exposure, application strategy and interview preparation.",
     keywords: [
+      "premium university admission mentorship program",
+      "Ivy League admission mentorship program",
+      "Ivy League admission consultant India",
       "admission to top universities abroad",
       "Oxford Cambridge admission guidance India",
       "Ivy League admission mentorship India",
@@ -39,7 +42,7 @@ export const guides: Guide[] = [
     h1: "Oxford, Cambridge & Ivy League admissions",
     accent: "start years before you apply.",
     intro:
-      "Brillianton's Mission QS100 is a structured mentorship pathway for Grades 8–12 students aiming at Oxford, Cambridge, the Ivy League and other QS Top 100 universities — guided by mentors who have studied and researched at leading institutions.",
+      "Brillianton's Mission QS100 is a premium university admission mentorship program for Grades 8–12 students aiming at Oxford, Cambridge, the Ivy League and other QS Top 100 universities — guided by mentors who have studied and researched at leading institutions.",
     image: "/brand/dream-globally.jpg",
     imageAlt: "A graduate in cap and gown looking up at a domed historic university building",
     sections: [
