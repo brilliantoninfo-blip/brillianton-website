@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Brillianton Global Education | Top University Admission & Scholarship Mentorship, Kerala",
+    default: "Premium University Admission Mentorship Program | Brillianton Global Education",
     template: "%s | Brillianton Global Education",
   },
   description: site.description,

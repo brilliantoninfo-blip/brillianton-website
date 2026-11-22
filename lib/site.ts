@@ -10,7 +10,7 @@ export const site = {
   url: "https://www.brilliantonedu.com", // primary domain on Vercel; the bare domain redirects here
   tagline: "Global vision. Personal guidance.",
   description:
-    "Brillianton Global Education is an international academic mentorship organisation preparing ambitious students for leading global universities, fellowships and scholarships through structured, long-term mentorship.",
+    "Brillianton Global Education runs a premium university admission mentorship program for students aiming at Oxford, Cambridge, the Ivy League and QS Top 100 universities, plus mentorship for fully funded fellowships and scholarships — from Calicut, Kerala.",
   email: "info@brilliantonedu.com",
   phone: "+91 97781 17553",
   phoneHref: "tel:+919778117553",
