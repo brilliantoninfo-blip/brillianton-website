@@ -43,7 +43,7 @@ export default function Hero() {
           transition={{ duration: 1, ease, delay: 0.2 }}
         >
           <span className="h-px w-10 bg-sun" />
-          International academic mentorship
+          Brillianton Global Education · International academic mentorship
         </motion.p>
 
         <h1 id="hero-title" className="display-wide text-mega font-extrabold uppercase">

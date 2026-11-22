@@ -9,9 +9,9 @@ import FinalCTA from "@/sections/home/FinalCTA";
 import { photos } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us — International Academic Mentorship in Calicut, Kerala",
   description:
-    "Brillianton Global Education is an international academic mentorship organisation based at HiLite Business Park, Calicut — guiding ambitious students and partnering with institutions to go global.",
+    "Brillianton Global Education is an international academic mentorship organisation at HiLite Business Park, Calicut — mentoring students for top global universities, scholarships and fellowships, and helping institutions go global.",
   alternates: { canonical: "/about" },
 };
 

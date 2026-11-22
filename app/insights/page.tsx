@@ -9,8 +9,9 @@ import { sessions } from "@/lib/sessions";
 import { photos, site, webinars } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Insights & Resources",
-  description: "Scholarship updates, fellowship opportunities, university spotlights, application advice and webinar recordings from Brillianton Global Education.",
+  title: "Insights — Scholarship Updates, Admission Advice & Webinars",
+  description:
+    "Scholarship and fellowship updates, advice on admission to leading universities, Statement of Purpose tips, webinar recordings and every Brillianton session.",
   alternates: { canonical: "/insights" },
 };
 

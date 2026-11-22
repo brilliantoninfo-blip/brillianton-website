@@ -13,7 +13,7 @@ const faq: { q: string; a: string; link?: { href: string; label: string } }[] = 
   {
     q: "Which programme fits me?",
     a: "If you're in Grades 8–12 and dream of Oxford, Cambridge, the Ivy League or a QS Top 100 university, Mission QS100 is your pathway. If you're an undergraduate, postgraduate or young professional aiming for Fulbright, Chevening, DAAD, Erasmus Mundus or Commonwealth, look at Future Fellows.",
-    link: { href: "/programmes", label: "Compare programmes" },
+    link: { href: "/pathway-finder", label: "Take the 1-minute pathway finder" },
   },
   {
     q: "Is Brillianton a study-abroad agency?",
@@ -102,7 +102,7 @@ export default function BrillGuide() {
   const remaining = faq.filter((f) => !asked.includes(f.q));
 
   return (
-    <div className="fixed bottom-4 right-4 z-[60] sm:bottom-6 sm:right-6">
+    <div className="fixed bottom-3 right-3 z-[60] sm:bottom-6 sm:right-6">
       <AnimatePresence>
         {open && (
           <motion.div

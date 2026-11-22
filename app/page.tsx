@@ -10,6 +10,8 @@ import InsightsPreview from "@/sections/home/InsightsPreview";
 import FinalCTA from "@/sections/home/FinalCTA";
 import InstagramWall from "@/sections/home/InstagramWall";
 import CampusMoments from "@/sections/home/CampusMoments";
+import PathwaySection from "@/sections/home/PathwaySection";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -17,6 +19,7 @@ export default function Home() {
       <Hero />
       <Vision />
       <Programmes />
+      <PathwaySection />
       <MeetBrill />
       <Opportunities />
       <WhyBrillianton />
@@ -25,6 +28,7 @@ export default function Home() {
       <Mentors />
       <InsightsPreview />
       <InstagramWall />
+      <FAQ />
       <FinalCTA />
     </>
   );

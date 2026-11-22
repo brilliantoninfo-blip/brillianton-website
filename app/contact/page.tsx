@@ -3,11 +3,13 @@ import { Suspense } from "react";
 import PageHero from "@/components/PageHero";
 import { Eyebrow } from "@/components/ui/primitives";
 import ContactForm from "./ContactForm";
+import FAQ from "@/components/FAQ";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Connect with Brillianton Global Education — HiLite Business Park, Calicut, Kerala. Call or WhatsApp +91 97781 17553.",
+  title: "Contact — Free Admission & Scholarship Consultation in Calicut",
+  description:
+    "Talk to Brillianton about admission to top global universities or fully funded scholarships. HiLite Business Park, Calicut, Kerala · WhatsApp +91 97781 17553 · info@brilliantonedu.com.",
   alternates: { canonical: "/contact" },
 };
 
@@ -74,6 +76,7 @@ export default function ContactPage() {
           </aside>
         </div>
       </section>
+      <FAQ title="Before you write to us." />
     </>
   );
 }

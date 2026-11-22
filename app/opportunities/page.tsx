@@ -7,9 +7,9 @@ import FinalCTA from "@/sections/home/FinalCTA";
 import { photos } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Global Opportunities",
+  title: "Global Opportunities — Fulbright, Chevening, DAAD, Erasmus Mundus & Commonwealth",
   description:
-    "International fellowships, scholarships, summer schools and university pathways — Fulbright, Chevening, DAAD, Erasmus Mundus, Commonwealth, Leadership School Finland 2026 and more.",
+    "Explore fully funded fellowships and scholarships for Indian students — Fulbright-Nehru, Chevening, DAAD, Erasmus Mundus, Commonwealth — plus Leadership School Finland and pathways to top universities.",
   alternates: { canonical: "/opportunities" },
 };
 

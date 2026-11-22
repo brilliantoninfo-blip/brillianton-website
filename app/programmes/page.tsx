@@ -4,12 +4,13 @@ import { Button, Eyebrow, Photo, Reveal } from "@/components/ui/primitives";
 import { FutureFellows, QS100 } from "@/sections/home/Programmes";
 import Approach from "@/sections/home/Approach";
 import FinalCTA from "@/sections/home/FinalCTA";
+import FAQ from "@/components/FAQ";
 import { institutionServices, photos } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Our Programmes",
+  title: "Programmes — Mission QS100 (Grades 8–12) & Future Fellows Scholarships Mentorship",
   description:
-    "Mission QS100 for Grades 8–12 and Future Fellows for undergraduates, postgraduates and professionals — plus internationalisation services for schools and colleges.",
+    "Mission QS100 mentors Grades 8–12 students for Oxford, Cambridge, Ivy League and QS Top 100 admissions. Future Fellows prepares graduates for fully funded fellowships like Fulbright, Chevening and DAAD. Plus programmes for schools and colleges.",
   alternates: { canonical: "/programmes" },
 };
 
@@ -97,6 +98,7 @@ export default function ProgrammesPage() {
         </div>
       </section>
 
+      <FAQ />
       <FinalCTA />
     </>
   );

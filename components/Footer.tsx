@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { nav, programmes, site } from "@/lib/site";
+import { guides } from "@/lib/guides";
 import { Mark } from "@/components/ui/primitives";
 import { Logo } from "@/components/Header";
 
@@ -51,6 +52,11 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/pathway-finder" className="text-white/80 transition hover:text-sun">
+                    Pathway finder
+                  </Link>
+                </li>
+                <li>
                   <Link href="/insights#sessions" className="text-white/80 transition hover:text-sun">
                     Sessions
                   </Link>
@@ -89,6 +95,15 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        <nav aria-label="Guides" className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/10 pt-8 text-sm">
+          <span className="eyebrow text-white/40">Guides</span>
+          {guides.map((g) => (
+            <Link key={g.slug} href={`/guides/${g.slug}`} className="text-white/75 transition hover:text-sun">
+              {g.metaTitle.split(" | ")[0].split(":")[0]}
+            </Link>
+          ))}
+        </nav>
 
         <div aria-hidden className="mt-24">
           <Mark className="mb-6 h-10 w-auto text-royal sm:h-14" capClassName="text-sun" />

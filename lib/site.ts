@@ -7,7 +7,7 @@
 export const site = {
   name: "Brillianton Global Education",
   shortName: "Brillianton",
-  url: "https://brilliantonedu.com",
+  url: "https://www.brilliantonedu.com", // primary domain on Vercel; the bare domain redirects here
   tagline: "Global vision. Personal guidance.",
   description:
     "Brillianton Global Education is an international academic mentorship organisation preparing ambitious students for leading global universities, fellowships and scholarships through structured, long-term mentorship.",

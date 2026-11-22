@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import SmoothScroll from "@/components/SmoothScroll";
 import BrillGuide from "@/components/BrillGuide";
+import MobileActionBar from "@/components/MobileActionBar";
 import StructuredData from "@/components/StructuredData";
 import { site } from "@/lib/site";
 
@@ -21,31 +22,27 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Brillianton Global Education | International Academic Mentorship",
+    default: "Brillianton Global Education | Top University Admission & Scholarship Mentorship, Kerala",
     template: "%s | Brillianton Global Education",
   },
   description: site.description,
   keywords: [
+    "admission to top universities abroad",
+    "Oxford Cambridge admission guidance India",
+    "Ivy League admission mentorship",
+    "QS top 100 university admission",
+    "fully funded scholarships for Indian students",
+    "Fulbright Chevening DAAD Erasmus Mundus guidance",
+    "study abroad mentorship Kerala",
+    "study abroad guidance Calicut Kozhikode",
     "international academic mentorship",
     "Mission QS100",
     "Future Fellows",
-    "Oxford Cambridge Ivy League preparation",
-    "Fulbright Chevening DAAD Erasmus Mundus mentorship",
-    "global university preparation Kerala",
-    "scholarship and fellowship guidance India",
     "Brillianton",
   ],
   authors: [{ name: site.name }],
   creator: site.name,
   formatDetection: { email: false, address: false, telephone: false },
-  icons: {
-    icon: [
-      { url: "/favicon_io/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon_io/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: "/favicon_io/apple-touch-icon.png",
-  },
-  manifest: "/favicon_io/site.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -59,7 +56,11 @@ export const metadata: Metadata = {
     title: "Brillianton Global Education — Your ambition has no borders",
     description: site.description,
   },
-  robots: { index: true, follow: true },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  alternates: { canonical: "/" },
+  category: "education",
+  // Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION once the Search Console property is created
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </main>
         <Footer />
         <BrillGuide />
+        <MobileActionBar />
       </body>
     </html>
   );
