@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Arrow, LineLink, ease } from "@/components/ui/primitives";
 import { whatsappLink } from "@/components/MobileActionBar";
 import { countries, kinds, levels, scholarships, type Scholarship } from "@/lib/scholarships";
+import BoardingPass from "@/components/BoardingPass";
 
 // shortcut: keyless Street View embed; switch to the Maps Embed API (streetview mode) once a key exists.
 const streetView = (c: NonNullable<Scholarship["campus"]>) => `https://maps.google.com/maps?layer=c&cbll=${c.lat},${c.lng}&cbp=12,0,0,0,0&output=svembed`;
@@ -19,6 +20,7 @@ export default function OpportunityFinder({ limit }: { limit?: number }) {
   const [level, setLevel] = useState("");
   const [kind, setKind] = useState("");
   const [walk, setWalk] = useState<Scholarship | null>(null);
+  const [pass, setPass] = useState<Scholarship | null>(null);
   const [mounted, setMounted] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => setMounted(true), []);
@@ -98,6 +100,10 @@ export default function OpportunityFinder({ limit }: { limit?: number }) {
         </div>
       </div>
 
+      <p className="mt-6 rounded-2xl bg-ink px-5 py-4 text-sm text-white">
+        <span className="font-semibold text-sun">✈ Pick your dream destination.</span> Tap “Boarding pass” on any card, add your name, and share your pass. Your journey starts with the right mentor.
+      </p>
+
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-ink/60" aria-live="polite">
           {results.length} {results.length === 1 ? "opportunity" : "opportunities"}
@@ -130,6 +136,9 @@ export default function OpportunityFinder({ limit }: { limit?: number }) {
                   ) : (
                     <LineLink href={s.href} external className="text-royal">Official site</LineLink>
                   )}
+                  <button type="button" onClick={() => setPass(s)} data-cta="finder-pass" className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-sun px-4 text-xs font-semibold uppercase tracking-[0.12em] text-ink transition hover:bg-ink hover:text-white">
+                    <span aria-hidden>✈</span> Boarding pass
+                  </button>
                   {s.campus && (
                     <button type="button" onClick={() => setWalk(s)} className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-ink px-4 text-xs font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-royal">
                       <span aria-hidden>360°</span> Walk the campus
@@ -162,6 +171,8 @@ export default function OpportunityFinder({ limit }: { limit?: number }) {
           </Link>
         </div>
       )}
+
+      {pass && mounted && <BoardingPass s={pass} onClose={() => setPass(null)} />}
 
       {mounted &&
         createPortal(
