@@ -24,11 +24,13 @@ export type Guide = {
 export const guides: Guide[] = [
   {
     slug: "top-university-admissions",
-    metaTitle: "Premium University Admission Mentorship Program — Oxford, Cambridge, Ivy League & QS Top 100",
+    metaTitle: "Ivy League & Oxbridge Admission Mentorship Program — Premium University Admissions from Kerala",
     metaDescription:
       "A premium university admission mentorship program from Kerala for Grades 8–12 students aiming at Oxford, Cambridge, the Ivy League and QS Top 100 universities — profile building, research exposure, application strategy and interview preparation.",
     keywords: [
       "premium university admission mentorship program",
+      "Ivy League admission mentorship program",
+      "Ivy League admission consultant India",
       "admission to top universities abroad",
       "Oxford Cambridge admission guidance India",
       "Ivy League admission mentorship India",

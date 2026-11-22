@@ -29,7 +29,8 @@ export const metadata: Metadata = {
   keywords: [
     "admission to top universities abroad",
     "Oxford Cambridge admission guidance India",
-    "Ivy League admission mentorship",
+    "Ivy League admission mentorship program",
+    "premium university admission mentorship program",
     "QS top 100 university admission",
     "fully funded scholarships for Indian students",
     "Fulbright Chevening DAAD Erasmus Mundus guidance",
