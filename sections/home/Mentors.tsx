@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Eyebrow, LineLink, Reveal, SplitWords } from "@/components/ui/primitives";
 import { mentors, webinars } from "@/lib/site";
+import ReelCard from "@/components/ReelCard";
 
 const initials = (n: string) =>
   n
@@ -15,18 +16,32 @@ const initials = (n: string) =>
 
 export function MentorGrid() {
   return (
-    <ul className="grid gap-px overflow-hidden rounded-[28px] bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {mentors.map((m, i) => (
-        <Reveal as="li" key={m.name} delay={i * 0.05} className="group relative bg-paper p-7 transition-colors duration-500 hover:bg-royal hover:text-white sm:p-9">
-          <div className="flex items-start justify-between">
-            <span className="display-wide grid h-14 w-14 place-items-center rounded-full bg-ink text-lg font-extrabold text-white transition-colors duration-500 group-hover:bg-white group-hover:text-royal">
-              {initials(m.name)}
-            </span>
-            <span className="text-xs tabular-nums text-ink/40 group-hover:text-white/50">0{i + 1}</span>
-          </div>
-          <h3 className="mt-10 text-xl font-semibold">{m.name}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-ink/65 group-hover:text-white/80">{m.role}</p>
-          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-royal group-hover:text-sun">{m.focus}</p>
+        <Reveal as="li" key={m.name} delay={(i % 4) * 0.06} className="group">
+          <article className="h-full overflow-hidden rounded-[24px] bg-white ring-1 ring-ink/5 transition-all duration-700 ease-expo hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-30px_rgba(11,18,54,0.45)]">
+            <div className="relative aspect-[4/5] overflow-hidden bg-deep">
+              {m.photo ? (
+                <Image
+                  src={m.photo}
+                  alt={`${m.name}, ${m.role}`}
+                  fill
+                  sizes="(min-width:1024px) 22vw, (min-width:640px) 45vw, 90vw"
+                  className="object-cover object-top transition-transform duration-[1.2s] ease-expo group-hover:scale-[1.04]"
+                />
+              ) : (
+                <div className="field-royal absolute inset-0 grid place-items-center">
+                  <span className="display-wide text-7xl font-extrabold tracking-tight text-white/90">{initials(m.name)}</span>
+                </div>
+              )}
+              <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/60 to-transparent" />
+              <span className="absolute bottom-4 left-4 rounded-full bg-sun px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-ink">{m.focus}</span>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-ink">{m.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">{m.role}</p>
+            </div>
+          </article>
         </Reveal>
       ))}
     </ul>
@@ -49,8 +64,9 @@ export default function Mentors() {
               <SplitWords text="who have walked the path." delay={0.1} wordClassName={(_, i) => (i >= 3 ? "italic-serif text-royal" : undefined)} />
             </h2>
           </div>
-          <Reveal className="lg:col-span-5" delay={0.15}>
-            <p className="text-lg leading-relaxed text-ink/65">Fulbright Scholars, an Erasmus Mundus Scholar, a Stanford researcher and international professionals — offering direct, one-to-one mentorship.</p>
+          <Reveal className="flex items-end gap-6 lg:col-span-5" delay={0.15}>
+            <p className="flex-1 text-lg leading-relaxed text-ink/65">Fulbright Scholars, an Erasmus Mundus Scholar, a Stanford researcher and international professionals — offering direct, one-to-one mentorship.</p>
+            <ReelCard compact className="w-[140px] shrink-0 sm:w-[170px]" />
           </Reveal>
         </div>
 

@@ -145,10 +145,12 @@ export const pillars = [
   { title: "Long-term planning", detail: "Support that can run from Grade 8 through postgraduate fellowships." },
 ];
 
-export const mentors = [
-  { name: "Dr. M Sihabudheen", role: "Fulbright Scholar (2018–19), Columbia University, New York", focus: "Global higher education strategy" },
-  { name: "Farseen Ali", role: "Erasmus Mundus Scholar", focus: "European research networks & academic mobility" },
-  { name: "Dr. Ilyas M", role: "Fulbright Scholar", focus: "Research methodology & competitive admissions" },
+export type Mentor = { name: string; role: string; focus: string; photo?: string };
+
+export const mentors: Mentor[] = [
+  { name: "Dr. M Sihabudheen", role: "Fulbright Scholar (2018–19), Columbia University, New York", focus: "Global higher education strategy", photo: "/mentors/m-sihabudheen.jpg" },
+  { name: "Dr. Ilyas M", role: "Fulbright Scholar", focus: "Research methodology & competitive admissions", photo: "/mentors/ilyas-m.jpg" },
+  { name: "Farseen Ali", role: "Erasmus Mundus Scholar", focus: "European research networks & academic mobility", photo: "/mentors/farseen-ali.jpg" },
   { name: "Dr. Mohamed Haseeb N", role: "Fulbright Post-Doctoral Fellow, UCLA · Assistant Professor, PSMO College", focus: "Research careers" },
   { name: "Naseef Parasserl", role: "PhD Research Scholar, Stanford University", focus: "STEM research & US admissions" },
   { name: "Mohammed Nizar", role: "Senior Engineer, Norwegian Maritime Authority", focus: "Global technical careers" },
