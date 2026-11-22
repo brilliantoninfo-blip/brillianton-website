@@ -1,23 +1,13 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from "next";
+import { insights } from "@/lib/insights";
+import { guides } from "@/lib/guides";
+import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://brilliantonedu.com';
-  
-  const routes = [
-    '',
-    '/about',
-    '/mentoring',
-    '/international-collaboration',
-    '/student-exchange',
-    '/webinars',
-    '/opportunities',
-    '/contact',
+  const routes = ["", "/about", "/programmes", "/pathway-finder", "/opportunities", "/insights", "/contact"];
+  return [
+    ...routes.map((r) => ({ url: `${site.url}${r}`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: r === "" ? 1 : 0.8 })),
+    ...guides.map((g) => ({ url: `${site.url}/guides/${g.slug}`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 })),
+    ...insights.map((i) => ({ url: `${site.url}/insights/${i.slug}`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 })),
   ];
-
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }));
 }

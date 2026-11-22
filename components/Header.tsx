@@ -1,127 +1,151 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { nav, site } from "@/lib/site";
+import { Button, Mark, ease } from "@/components/ui/primitives";
+import { InstagramGlyph } from "@/sections/home/InstagramWall";
+
+export function Logo({ className = "" }: { className?: string }) {
+  return (
+    <span className={`flex items-center gap-3 ${className}`}>
+      <Mark className="h-8 w-auto" capClassName="text-sun" />
+      <span className="flex flex-col leading-none">
+        <span className="display-wide text-[1.05rem] font-extrabold tracking-[0.02em]">BRILLIANTON</span>
+        <span className="mt-1 text-[0.52rem] font-semibold tracking-[0.42em] opacity-80">GLOBAL EDUCATION</span>
+      </span>
+    </span>
+  );
+}
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
 
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    setScrolled(y > 40);
+    setHidden(y > 400 && y > prev && !open);
+  });
+
+  useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/mentoring", label: "Mentoring" },
-    { href: "/international-collaboration", label: "International Collaboration" },
-    { href: "/student-exchange", label: "Student Exchange" },
-    { href: "/webinars", label: "Webinars" },
-    { href: "/opportunities", label: "Opportunities" },
-    { href: "/contact", label: "Contact" },
-  ];
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg"
-          : "bg-white/80 backdrop-blur-sm"
-      }`}
-    >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo - Your full logo with text */}
-          <Link href="/" className="flex items-center group">
-            <div className="relative h-12 w-40 md:h-14 md:w-48">
-              <Image
-                src="/brillianton-logo.svg"
-                alt="Brillianton Global Education"
-                fill
-                sizes="(max-width: 768px) 160px, 192px"
-                className="object-contain transition-transform duration-300 group-hover:scale-105"
-                priority
-              />
-            </div>
+    <>
+      <motion.header
+        className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4"
+        animate={{ y: hidden ? "-120%" : "0%" }}
+        transition={{ duration: 0.6, ease }}
+      >
+        <div
+          className={`mx-auto flex max-w-frame items-center justify-between rounded-full px-4 py-2.5 text-white transition-all duration-500 sm:px-6 ${
+            scrolled || open ? "bg-ink/75 shadow-[0_10px_40px_-10px_rgba(3,8,32,0.6)] ring-1 ring-white/10 backdrop-blur-xl" : "bg-transparent"
+          }`}
+        >
+          <Link href="/" aria-label="Brillianton Global Education — home" className="rounded-full">
+            <Logo />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`relative text-sm font-medium transition-colors ${
-                  pathname === link.href
-                    ? "text-primary"
-                    : "text-gray-700 hover:text-primary"
-                }`}
-              >
-                {link.label}
-                {pathname === link.href && (
-                  <motion.div
-                    layoutId="navbar-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-700 hover:text-primary active:bg-accent rounded-lg transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-t border-gray-200"
-          >
-            <div className="container mx-auto px-4 py-4 space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block py-3 px-4 min-h-[44px] rounded-lg transition-colors text-sm md:text-base ${
-                    pathname === link.href
-                      ? "bg-accent text-primary font-semibold"
-                      : "text-gray-700 active:bg-accent active:text-primary"
-                  }`}
-                >
-                  {link.label}
-                </Link>
+          <nav aria-label="Primary" className="hidden xl:block">
+            <ul className="flex items-center gap-1">
+              {nav.slice(1).map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`group relative block whitespace-nowrap rounded-full px-3.5 py-2 text-[0.82rem] font-medium transition-colors ${
+                      isActive(item.href) ? "text-sun" : "text-white/80 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                    <span
+                      className={`absolute bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-sun transition-transform duration-300 ${
+                        isActive(item.href) ? "scale-100" : "scale-0 group-hover:scale-100"
+                      }`}
+                    />
+                  </Link>
+                </li>
               ))}
+            </ul>
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Brillianton on Instagram (opens in a new tab)"
+              className="hidden h-11 w-11 place-items-center rounded-full ring-1 ring-white/25 transition hover:bg-white hover:text-ink md:grid"
+            >
+              <InstagramGlyph />
+            </a>
+            <div className="hidden sm:block">
+              <Button href="/programmes" variant="sun" className="!min-h-[44px] !px-5 !py-3 !text-[0.7rem]">
+                Explore Programmes
+              </Button>
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              className="relative grid h-11 w-11 place-items-center rounded-full ring-1 ring-white/25 transition hover:bg-white/10 xl:hidden"
+            >
+              <span className={`absolute h-[1.5px] w-5 bg-white transition-transform duration-500 ease-expo ${open ? "rotate-45" : "-translate-y-[4px]"}`} />
+              <span className={`absolute h-[1.5px] w-5 bg-white transition-transform duration-500 ease-expo ${open ? "-rotate-45" : "translate-y-[4px]"}`} />
+            </button>
+          </div>
+        </div>
+      </motion.header>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            className="fixed inset-0 z-40 flex flex-col justify-between overflow-y-auto bg-ink px-6 pb-10 pt-28 text-white xl:hidden"
+            initial={{ clipPath: "circle(0% at 100% 0%)" }}
+            animate={{ clipPath: "circle(150% at 100% 0%)" }}
+            exit={{ clipPath: "circle(0% at 100% 0%)" }}
+            transition={{ duration: 0.8, ease }}
+          >
+            <nav aria-label="Mobile">
+              <ul className="space-y-1">
+                {nav.map((item, i) => (
+                  <li key={item.href} className="overflow-hidden">
+                    <motion.div initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.05, duration: 0.7, ease }}>
+                      <Link
+                        href={item.href}
+                        className={`flex items-baseline gap-4 py-2 text-[2.4rem] font-bold leading-none tracking-tight sm:text-6xl ${isActive(item.href) ? "text-sun" : ""}`}
+                      >
+                        <span className="text-xs font-medium tabular-nums text-white/40">0{i + 1}</span>
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div className="mt-10 space-y-2 pr-20 text-sm text-white/60">
+              <a className="block hover:text-white" href={`mailto:${site.email}`}>{site.email}</a>
+              <a className="block hover:text-white" href={site.phoneHref}>{site.phone}</a>
+              <a className="block hover:text-white" href={site.instagram} target="_blank" rel="noopener noreferrer">Instagram {site.instagramHandle}</a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }
