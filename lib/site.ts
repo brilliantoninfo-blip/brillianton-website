@@ -152,7 +152,7 @@ export const mentors: Mentor[] = [
   { name: "Dr. Ilyas M", role: "Fulbright Scholar", focus: "Research methodology & competitive admissions", photo: "/mentors/ilyas-m.jpg" },
   { name: "Farseen Ali", role: "Erasmus Mundus Scholar", focus: "European research networks & academic mobility", photo: "/mentors/farseen-ali.jpg" },
   { name: "Dr. Mohamed Haseeb N", role: "Fulbright Post-Doctoral Fellow, UCLA · Assistant Professor, PSMO College", focus: "Research careers" },
-  { name: "Naseef Parasserl", role: "PhD Research Scholar, Stanford University", focus: "STEM research & US admissions" },
+  { name: "Naseef Parasserl", role: "PhD Research Scholar, Stanford University", focus: "STEM research & US admissions", photo: "/mentors/naseef-parasserl.jpg" },
   { name: "Mohammed Nizar", role: "Senior Engineer, Norwegian Maritime Authority", focus: "Global technical careers" },
 ];
 
