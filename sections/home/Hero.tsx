@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSiteReady } from "@/components/Loader";
 import { Button, Marquee, ease } from "@/components/ui/primitives";
 import { fellowshipsTicker } from "@/lib/site";
@@ -19,6 +19,8 @@ const lines = [
 export default function Hero() {
   const ready = useSiteReady();
   const reduce = useReducedMotion();
+  const [wide, setWide] = useState(false);
+  useEffect(() => setWide(window.innerWidth >= 768), []);
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
@@ -30,7 +32,7 @@ export default function Hero() {
       {/* Layered background: deep gradient + 3D city + vignette */}
       <div aria-hidden className="field-royal absolute inset-0 -z-10" />
       <motion.div aria-hidden className="absolute inset-0 -z-10" initial={{ opacity: 0 }} animate={{ opacity: show ? 1 : 0 }} transition={{ duration: 2, ease }}>
-        <CityScene className="absolute inset-0 [&_canvas]:!h-full [&_canvas]:!w-full" />
+        {wide && <CityScene className="absolute inset-0 [&_canvas]:!h-full [&_canvas]:!w-full" />}
       </motion.div>
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(6,34,154,0.9)_0%,rgba(6,34,154,0.55)_45%,transparent_75%)] lg:bg-[linear-gradient(90deg,rgba(6,34,154,0.8)_0%,rgba(6,34,154,0.3)_45%,transparent_65%)]" />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-[#06229a] via-[#06229a]/50 to-transparent" />

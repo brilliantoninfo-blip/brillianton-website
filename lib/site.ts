@@ -39,13 +39,8 @@ export const photos = {
   redBrick: u("1622397333309-3056849bc70b"),
   curvedLibrary: u("1568667256549-094345857637"),
   libraryStudent: u("1427504494785-3a9ca7044f45"),
-  graduateBack: u("1525921429624-479b6a26d84d"),
   capToss: u("1541339907198-e08756dedf3f", 2400),
-  lecture: u("1524178232363-1fb2b075b655"),
   openBook: u("1532012197267-da84d127e765"),
-  campusLawn: u("1562774053-701939374585"),
-  studentLaptop: u("1513258496099-48168024aec0"),
-  libraryAisle: u("1498243691581-b145c3f54a5a"),
   glassLibrary: u("1564981797816-1043664bf78d"),
 };
 
@@ -198,7 +193,6 @@ export const webinars: Webinar[] = [
   },
 ];
 
-export const destinations = ["Oxford", "Cambridge", "Harvard", "Stanford", "Columbia", "UCLA", "Manchester", "Sussex", "Helsinki", "Berlin"];
 export const fellowshipsTicker = ["Fulbright", "Chevening", "DAAD", "Erasmus Mundus", "Commonwealth", "Oxford", "Cambridge", "Ivy League", "QS Top 100"];
 
 /** Recent posters from @brilliantonglobal (downloaded from the live feed; each links to its post). */

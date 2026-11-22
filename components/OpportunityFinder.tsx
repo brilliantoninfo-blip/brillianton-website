@@ -38,13 +38,18 @@ export default function OpportunityFinder({ limit }: { limit?: number }) {
 
   useEffect(() => {
     if (!walk) return;
+    const trigger = document.activeElement as HTMLElement | null;
+    const prev = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
     closeRef.current?.focus();
     window.__lenis?.stop();
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setWalk(null);
     window.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("keydown", onKey);
+      document.documentElement.style.overflow = prev;
       window.__lenis?.start();
+      trigger?.focus();
     };
   }, [walk]);
 
