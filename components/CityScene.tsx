@@ -68,7 +68,7 @@ export default function CityScene({ className = "" }: { className?: string }) {
       const svg = new SVGLoader().parse(MARK_SVG);
       const monument = new THREE.Group();
       const pillarMat = new THREE.MeshPhysicalMaterial({ color: 0xf3f6ff, metalness: 0.12, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.15 });
-      const capMat = new THREE.MeshStandardMaterial({ color: 0xffd43b, emissive: 0xffc61a, emissiveIntensity: 0.55, roughness: 0.3 });
+      const capMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xdfe6ff, emissiveIntensity: 0.35, roughness: 0.25 });
       svg.paths.forEach((p) => {
         const isCap = (p.userData?.node as Element | undefined)?.getAttribute("id") === "cap";
         SVGLoader.createShapes(p).forEach((shape) => {

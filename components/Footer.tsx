@@ -106,7 +106,7 @@ export default function Footer() {
         </nav>
 
         <div aria-hidden className="mt-24">
-          <Mark className="mb-6 h-10 w-auto text-royal sm:h-14" capClassName="text-sun" />
+          <Mark className="mb-6 h-10 w-auto text-royal sm:h-14" />
           <p className="display-wide select-none whitespace-nowrap text-[10.2vw] font-extrabold leading-[0.8] tracking-[-0.05em] text-white min-[1440px]:text-[9.4rem]">BRILLIANTON</p>
         </div>
 
