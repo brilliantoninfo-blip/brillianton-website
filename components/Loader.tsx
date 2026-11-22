@@ -79,7 +79,7 @@ export default function Loader() {
           <div className="flex flex-col items-center gap-8">
             <div className="relative h-24 w-28 text-white sm:h-28 sm:w-32">
               <svg viewBox="0 0 140 118" className="h-full w-full" aria-hidden>
-                <motion.path d="M38 9 70 0l32 9-32 9z" fill="#FFD43B" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.75, duration: 0.8, ease }} />
+                <motion.path d="M38 9 70 0l32 9-32 9z" fill="#FFFFFF" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.75, duration: 0.8, ease }} />
                 {["M0 118V62C0 50 7 43 18 42l8-1v77z", "M33 118V37c3-8 14-13 30-15v96z", "M77 118V22c16 2 27 7 30 15v81z", "M114 118V41l8 1c11 1 18 8 18 20v56z"].map((d, i) => (
                   <motion.path
                     key={d}

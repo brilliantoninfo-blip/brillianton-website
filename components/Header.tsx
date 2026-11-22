@@ -11,7 +11,7 @@ import { InstagramGlyph } from "@/sections/home/InstagramWall";
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <span className={`flex items-center gap-3 ${className}`}>
-      <Mark className="h-8 w-auto" capClassName="text-sun" />
+      <Mark className="h-8 w-auto" />
       <span className="flex flex-col leading-none">
         <span className="display-wide text-[1.05rem] font-extrabold tracking-[0.02em]">BRILLIANTON</span>
         <span className="mt-1 text-[0.52rem] font-semibold tracking-[0.42em] opacity-80">GLOBAL EDUCATION</span>

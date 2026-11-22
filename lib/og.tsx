@@ -22,7 +22,7 @@ export function renderOg({ eyebrow, title, accent }: { eyebrow: string; title: s
       >
         <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
           <svg width="84" height="71" viewBox="0 0 140 118">
-            <path d="M38 9 70 0l32 9-32 9z" fill="#FFD43B" />
+            <path d="M38 9 70 0l32 9-32 9z" fill="#fff" />
             <path d="M0 118V62C0 50 7 43 18 42l8-1v77z" fill="#fff" />
             <path d="M33 118V37c3-8 14-13 30-15v96z" fill="#fff" />
             <path d="M77 118V22c16 2 27 7 30 15v81z" fill="#fff" />
