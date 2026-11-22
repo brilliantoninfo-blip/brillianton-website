@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { useSiteReady } from "@/components/Loader";
 import { Button, Marquee, ease } from "@/components/ui/primitives";
 import { fellowshipsTicker } from "@/lib/site";
+import ReelCard from "@/components/ReelCard";
 
 const CityScene = dynamic(() => import("@/components/CityScene"), { ssr: false });
 
@@ -84,6 +85,15 @@ export default function Hero() {
             </Button>
           </motion.div>
         </div>
+      </motion.div>
+
+      <motion.div
+        className="absolute right-12 top-28 z-10 hidden w-[190px] xl:block"
+        initial={{ opacity: 0, y: 30 }}
+        animate={show ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 1, ease, delay: 1.2 }}
+      >
+        <ReelCard compact />
       </motion.div>
 
       <div className="absolute inset-x-0 bottom-0 border-t border-white/10 bg-[#061f8c]/60 backdrop-blur-sm">
