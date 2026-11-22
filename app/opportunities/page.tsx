@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import { Button, Eyebrow, Photo, Reveal } from "@/components/ui/primitives";
-import OpportunityExplorer from "./OpportunityExplorer";
-import GlobeExplorer from "@/components/GlobeExplorer";
+import OpportunityFinder from "@/components/OpportunityFinder";
 import FinalCTA from "@/sections/home/FinalCTA";
 import { photos } from "@/lib/site";
 
@@ -20,25 +19,14 @@ export default function OpportunitiesPage() {
         eyebrow="Global opportunities"
         title="Where ambition"
         accent="can take you."
-        intro="A curated map of the fellowships, scholarships and pathways Brillianton mentees prepare for. Each links to its official source — always confirm eligibility, funding and deadlines there."
+        intro="Search scholarships, fellowships, internships and summer programmes by country, level and type. Each links to its official source — always confirm eligibility, funding and deadlines there."
       />
 
-      {/* Interactive globe: every pathway starts in India */}
-      <section className="field-navy relative overflow-hidden bg-ink py-20 text-white sm:py-28" aria-labelledby="globe-title">
+      <section className="bg-sand py-20 sm:py-28" aria-label="Opportunity finder">
         <div className="frame">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <h2 id="globe-title" className="text-title font-semibold">
-              Follow the pathways, <span className="italic-serif text-sun">from India to the world.</span>
-            </h2>
-            <p className="max-w-sm text-white/65">Drag the globe, tap a destination, or let it tour on its own.</p>
-          </div>
-          <div className="mt-12">
-            <GlobeExplorer tone="dark" />
-          </div>
+          <OpportunityFinder />
         </div>
       </section>
-
-      <OpportunityExplorer />
 
       {/* Featured: Finland */}
       <section className="bg-white py-28 sm:py-36">
